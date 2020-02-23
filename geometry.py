@@ -86,7 +86,7 @@ class Line:
                f'y={self.p.y}+{self.v.ny}t, ' \
                f'z={self.p.z}+{self.v.nz}t) '
 
-    def perpendicular_line(self, other):
+    def perpendicular_line_at_point(self, other):
         n = self.v ** other.v
         n2 = other.v ** n
 
@@ -94,8 +94,7 @@ class Line:
             raise BadData
 
         wagedpoint = other.p - self.p
-        multiplier = (n2 * wagedpoint) / (self.v * n2)
-        print(multiplier)
+        multiplier = (wagedpoint * n2) / (self.v * n2)
 
         return Point3d(
             self.p.x + multiplier * other.v.nx,
@@ -117,8 +116,8 @@ def line_distance(l1, l2):
     line1 = unpack_data(l1)
     line2 = unpack_data(l2)
 
-    c1 = line1.perpendicular_line(line2)
-    c2 = line2.perpendicular_line(line1)
+    c1 = line1.perpendicular_line_at_point(line2)
+    c2 = line2.perpendicular_line_at_point(line1)
     print(c1)
     print(c2)
 

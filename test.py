@@ -98,11 +98,11 @@ class LineTestCases(unittest.TestCase):
         self.assertIsInstance(line.p, geo.Point3d)
         self.assertIsInstance(line.v, geo.Vector3d)
 
-    def test_line_perpendicular_return_line(self):
+    def test_line_perpendicular_return_point(self):
         line1 = geo.Line(2, 2, 3, 0, 0, -1)
         line2 = geo.Line(0, -1, 2, 0, -2, 4)
-        line3 = line1.perpendicular_line(line2)
-        self.assertIsInstance(line3, geo.Line)
+        line3 = line1.perpendicular_line_at_point(line2)
+        self.assertIsInstance(line3, geo.Point3d)
 
     # def test_line_perpendicular_return_correct_line(self):
     #     line1 = geo.Line(2, 2, 3, 0, 0, -1)
